@@ -38,6 +38,7 @@ kotlin {
     val commonMain by getting {
       dependencies {
         implementation("org.jetbrains.kotlinx:kotlinx-io-core:0.2.1")
+        implementation("com.squareup.okio:okio:3.4.0")
       }
     }
     val macosArm64Main by getting {

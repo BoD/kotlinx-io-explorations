@@ -16,11 +16,15 @@ class KotlinxIoPrefixer(
 ) {
   fun prefix() {
     val sourcePath = Path(source)
+    val sourceSource = sourcePath.source()
+      .buffered()
     val destinationPath = Path(destination)
-    val teeSink = TeeSink(destinationPath.sink(), StdoutSink()).buffered()
+    val destinationSink = destinationPath.sink()
+    val teeSink = TeeSink(destinationSink, StdoutSink())
+      .buffered()
     @OptIn(ExperimentalStdlibApi::class)
     teeSink.use { sink ->
-      sourcePath.source().buffered().use { source ->
+      sourceSource.use { source ->
         var lineIndex = 1
         var line: String?
         while (true) {
