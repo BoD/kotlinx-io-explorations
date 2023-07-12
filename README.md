@@ -125,6 +125,16 @@ are in Okio but not in Kotlinx-io:
 - Encryption/Decryption (Cipher)
 - Getting a Source/Sink from a Socket
 
+## Targets
+
+Both libraries target the JVM, JS (Node, Browser) and Native (Apple, Linux, Windows, Android).
+
+WASM:
+
+- Okio: support is ongoing: https://github.com/square/okio/issues/1203
+- Kotlinx-io: not supported yet: https://github.com/Kotlin/kotlinx-io/issues/164
+
+
 ## TODO
 
 - Look at how easy it would be to have Okio <-> kotlinx-io adapters
