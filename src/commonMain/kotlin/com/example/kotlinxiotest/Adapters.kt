@@ -2,11 +2,13 @@ package com.example.kotlinxiotest
 
 import kotlinx.io.readByteArray
 import kotlinx.io.snapshot
+import okio.ByteString.Companion.toByteString
 import okio.Timeout
 
 /*
  * okio.Source -> kotlinx.io.RawSource
  */
+
 private class OkioSourceToKotlinxIoRawSource(
   private val okioSource: okio.Source,
 ) : kotlinx.io.RawSource {
@@ -26,9 +28,11 @@ fun okio.Source.asKotlinxIoRawSource(): kotlinx.io.RawSource {
   return OkioSourceToKotlinxIoRawSource(this)
 }
 
+
 /*
  * okio.Sink -> kotlinx.io.RawSink
  */
+
 private class OkioSinkToKotlinxIoRawSink(
   private val okioSink: okio.Sink,
 ) : kotlinx.io.RawSink {
@@ -56,6 +60,7 @@ fun okio.Sink.asKotlinxIoRawSink(): kotlinx.io.RawSink {
 /*
  * kotlinx.io.RawSource -> okio.Source
  */
+
 private class KotlinxIoRawSourceToOkioSource(
   private val kotlinxIoRawSource: kotlinx.io.RawSource,
 ) : okio.Source {
@@ -79,9 +84,11 @@ fun kotlinx.io.RawSource.asOkioSource(): okio.Source {
   return KotlinxIoRawSourceToOkioSource(this)
 }
 
+
 /*
  * kotlinx.io.RawSink -> okio.Sink
  */
+
 private class KotlinxIoRawSinkToOkioSink(
   private val kotlinxIoRawSink: kotlinx.io.RawSink,
 ) : okio.Sink {
@@ -109,3 +116,15 @@ fun kotlinx.io.RawSink.asOkioSink(): okio.Sink {
   return KotlinxIoRawSinkToOkioSink(this)
 }
 
+
+/*
+ * okio.ByteString <-> kotlinx.io.bytestring.ByteString
+ */
+
+fun okio.ByteString.asKotlinxIoByteString(): kotlinx.io.bytestring.ByteString {
+  return kotlinx.io.bytestring.ByteString(this.toByteArray())
+}
+
+fun kotlinx.io.bytestring.ByteString.asOkioByteString(): okio.ByteString {
+  return this.toByteArray().toByteString()
+}
