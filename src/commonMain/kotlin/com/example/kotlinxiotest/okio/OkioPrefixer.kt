@@ -8,8 +8,6 @@ import okio.Timeout
 import okio.buffer
 import okio.use
 
-expect val systemFileSystem: FileSystem
-
 class OkioPrefixer(
   private val source: String,
   private val destination: String,
@@ -77,3 +75,5 @@ class StdoutSink : Sink {
     return Timeout.NONE
   }
 }
+
+expect val systemFileSystem: FileSystem
